@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-#if !NET40
 namespace DotNetty.Buffers
 {
     using System;
@@ -166,7 +165,7 @@ namespace DotNetty.Buffers
 
         public override IntPtr AddressOfPinnedMemory() => (IntPtr)this.memoryAddress;
 
-        [MethodImpl(InlineMethod.Value)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         byte* Addr(int index) => this.memoryAddress + index;
 
         public override IByteBuffer SetZero(int index, int length)
@@ -186,4 +185,3 @@ namespace DotNetty.Buffers
         }
     }
 }
-#endif

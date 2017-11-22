@@ -28,7 +28,7 @@ namespace DotNetty.Buffers.Tests
         {
             base.Dispose();
 
-            for (; ; )
+            for (; ;)
             {
                 NoopResourceLeakTracker tracker = null;
                 if (this.trackers.Count > 0)

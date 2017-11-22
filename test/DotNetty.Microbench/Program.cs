@@ -7,39 +7,19 @@ namespace DotNetty.Microbench
     using BenchmarkDotNet.Running;
     using DotNetty.Microbench.Allocators;
     using DotNetty.Microbench.Buffers;
-    using DotNetty.Microbench.Codecs;
-    using DotNetty.Microbench.Common;
     using DotNetty.Microbench.Concurrency;
-    using DotNetty.Microbench.Headers;
-    using DotNetty.Microbench.Http;
-    using DotNetty.Microbench.Internal;
 
     class Program
     {
         static readonly Type[] BenchmarkTypes =
         {
-            typeof(PooledHeapByteBufferAllocatorBenchmark),
-            typeof(UnpooledHeapByteBufferAllocatorBenchmark),
-
+            typeof(PooledByteBufferAllocatorBenchmark),
+            typeof(UnpooledByteBufferAllocatorBenchmark),
             typeof(ByteBufferBenchmark),
-            typeof(PooledByteBufferBenchmark),
             typeof(UnpooledByteBufferBenchmark),
-
-            typeof(DateFormatterBenchmark),
-
-            typeof(AsciiStringBenchmark),
-
+            typeof(PooledByteBufferBenchmark),
             typeof(FastThreadLocalBenchmark),
-            typeof(SingleThreadEventExecutorBenchmark),
-
-            typeof(HeadersBenchmark),
-
-            typeof(ClientCookieDecoderBenchmark),
-            typeof(HttpRequestDecoderBenchmark),
-            typeof(HttpRequestEncoderInsertBenchmark),
-            typeof(WriteBytesVsShortOrMediumBenchmark),
-
-            typeof(PlatformDependentBenchmark)
+            typeof(SingleThreadEventExecutorBenchmark)
         };
 
         static void Main(string[] args)

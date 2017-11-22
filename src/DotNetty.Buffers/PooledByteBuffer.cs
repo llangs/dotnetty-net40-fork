@@ -58,7 +58,7 @@ namespace DotNetty.Buffers
             this.SetIndex0(0, 0);
             this.DiscardMarks();
         }
-        
+
         public override int Capacity => this.Length;
 
         public sealed override IByteBuffer AdjustCapacity(int newCapacity)
@@ -145,7 +145,7 @@ namespace DotNetty.Buffers
 
         void Recycle() => this.recyclerHandle.Release(this);
 
-        [MethodImpl(InlineMethod.Value)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected int Idx(int index) => this.Offset + index;
     }
 }
