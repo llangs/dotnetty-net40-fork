@@ -74,7 +74,7 @@ namespace DotNetty.Codecs.Redis
 
         FixedRedisMessagePool()
         {
-            var stringToSimpleStringValues = new Dictionary<string, SimpleStringRedisMessage>();
+            var stringToSimpleStringValues = new Dictionary<string, SimpleStringRedisMessage>(System.StringComparer.Ordinal);
             var byteBufferToSimpleStringValues = new Dictionary<IByteBuffer, SimpleStringRedisMessage>();
 
             foreach (string simpleString in SimpleStrings)
@@ -94,7 +94,7 @@ namespace DotNetty.Codecs.Redis
             this.byteBufferToSimpleStringMessages = new ReadOnlyDictionary<IByteBuffer, SimpleStringRedisMessage>(byteBufferToSimpleStringValues);
 #endif
 
-            var errorToErrorValues = new Dictionary<string, ErrorRedisMessage>();
+            var errorToErrorValues = new Dictionary<string, ErrorRedisMessage>(System.StringComparer.Ordinal);
             var byteBufferToErrorValues = new Dictionary<IByteBuffer, ErrorRedisMessage>();
             foreach (string error in Errors)
             {

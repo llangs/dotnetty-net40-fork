@@ -9,9 +9,8 @@ namespace DotNetty.Transport.Channels
     using System.Diagnostics.Contracts;
     using System.Net;
     using System.Runtime.CompilerServices;
-    using System.Text;
-    using System.Threading;
     using System.Threading.Tasks;
+    using CuteAnt.Pool;
     using DotNetty.Common;
     using DotNetty.Common.Concurrency;
     using DotNetty.Common.Internal.Logging;
@@ -661,7 +660,7 @@ namespace DotNetty.Transport.Channels
         /// </summary>
         public sealed override string ToString()
         {
-            StringBuilder buf = new StringBuilder()
+            var buf = StringBuilderManager.Allocate()
                 .Append(this.GetType().Name)
                 .Append('{');
             AbstractChannelHandlerContext ctx = this.head.Next;
@@ -687,7 +686,7 @@ namespace DotNetty.Transport.Channels
                 buf.Append(", ");
             }
             buf.Append('}');
-            return buf.ToString();
+            return StringBuilderManager.ReturnAndFree(buf);
         }
 
         public IChannelPipeline FireChannelRegistered()
