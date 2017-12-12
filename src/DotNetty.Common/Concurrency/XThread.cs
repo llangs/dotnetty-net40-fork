@@ -92,11 +92,11 @@ namespace DotNetty.Common.Concurrency
 
         public static void Sleep(int millisecondsTimeout)
         {
-#if NET40
+    #if NET40
             TaskEx.Delay(millisecondsTimeout).Wait();
-#else
+    #else
             Task.Delay(millisecondsTimeout).Wait();
-#endif
+    #endif
         }
 
         public int Id => this.threadId;
