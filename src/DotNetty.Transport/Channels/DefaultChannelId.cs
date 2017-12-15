@@ -9,6 +9,7 @@ namespace DotNetty.Transport.Channels
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading;
+    using CuteAnt.Pool;
     using DotNetty.Buffers;
     using DotNetty.Common.Internal;
     using DotNetty.Common.Internal.Logging;
@@ -149,7 +150,8 @@ namespace DotNetty.Transport.Channels
         static byte[] DefaultMachineId()
         {
             byte[] bestMacAddr = Platform.GetDefaultDeviceId();
-            if (bestMacAddr == null) {
+            if (bestMacAddr == null)
+            {
                 bestMacAddr = new byte[MacAddressUtil.MacAddressLength];
                 ThreadLocalRandom.Value.NextBytes(bestMacAddr);
                 Logger.Warn(
@@ -162,7 +164,7 @@ namespace DotNetty.Transport.Channels
 
         string NewLongValue()
         {
-            var buf = new StringBuilder(2 * this.data.Length + 5);
+            var buf = StringBuilderManager.Allocate(2 * this.data.Length + 5);
             int i = 0;
             i = this.AppendHexDumpField(buf, i, MachineIdLen);
             i = this.AppendHexDumpField(buf, i, ProcessIdLen);
@@ -170,7 +172,7 @@ namespace DotNetty.Transport.Channels
             i = this.AppendHexDumpField(buf, i, TimestampLen);
             i = this.AppendHexDumpField(buf, i, RandomLen);
             Debug.Assert(i == this.data.Length);
-            return buf.ToString().Substring(0, buf.Length - 1);
+            var strValue = buf.ToString().Substring(0, buf.Length - 1); StringBuilderManager.Free(buf); return strValue;
         }
 
         int AppendHexDumpField(StringBuilder buf, int i, int length)
