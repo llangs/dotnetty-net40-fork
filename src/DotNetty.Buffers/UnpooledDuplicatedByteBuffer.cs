@@ -29,10 +29,6 @@ namespace DotNetty.Buffers
             {
                 this.buffer = (AbstractByteBuffer)buffer.Unwrap();
             }
-            else if (buffer is AbstractBufferManagerDerivedByteBuffer)
-            {
-                this.buffer = (AbstractByteBuffer)buffer.Unwrap();
-            }
             else
             {
                 this.buffer = buffer;

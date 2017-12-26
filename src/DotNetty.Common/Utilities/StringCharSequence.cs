@@ -10,7 +10,7 @@ namespace DotNetty.Common.Utilities
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    public sealed partial class StringCharSequence : ICharSequence, IEquatable<StringCharSequence>
+    public sealed class StringCharSequence : ICharSequence, IEquatable<StringCharSequence>
     {
         public static readonly StringCharSequence Empty = new StringCharSequence(string.Empty);
 
