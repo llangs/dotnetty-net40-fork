@@ -120,8 +120,7 @@ namespace DotNetty.Transport.Tests.Channel.Sockets
 
                         yield return new object[]
                         {
-                               Unpooled.WrappedBuffer(
-                                   Unpooled.CopiedBuffer(Data, 0, 2), Unpooled.CopiedBuffer(Data, 2, 2)),
+                                Unpooled.WrappedBuffer(Unpooled.CopiedBuffer(Data, 0, 2), Unpooled.CopiedBuffer(Data, 2, 2)),
                                 bindClient,
                                 allocator,
                                 addressFamily,
@@ -131,8 +130,7 @@ namespace DotNetty.Transport.Tests.Channel.Sockets
 
                         yield return new object[]
                         {
-                                Unpooled.WrappedBuffer(
-                                    Unpooled.CopiedBuffer(Data, 0, 2), Unpooled.CopiedBuffer(Data, 2, 2)),
+                                Unpooled.WrappedBuffer(Unpooled.CopiedBuffer(Data, 0, 2), Unpooled.CopiedBuffer(Data, 2, 2)),
                                 bindClient,
                                 allocator,
                                 addressFamily,
